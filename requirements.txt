@@ -7,3 +7,4 @@ drf-yasg
 phonenumbers
 requests
 gunicorn
+django-cors-headers
