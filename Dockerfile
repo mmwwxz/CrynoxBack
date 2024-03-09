@@ -8,7 +8,6 @@ COPY requirements.txt /app/
 RUN pip install --upgrade pip && \
     pip install -r requirements.txt
 
-#COPY nginx/nginx.conf /etc/nginx/conf.d/
 
 COPY . /app/
 
