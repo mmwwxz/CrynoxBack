@@ -5,6 +5,5 @@ python-decouple
 djangorestframework
 drf-yasg
 phonenumbers
-celery
 requests
-telegram
+gunicorn
