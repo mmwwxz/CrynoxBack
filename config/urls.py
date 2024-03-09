@@ -8,7 +8,7 @@ from .drf_swagger import urlpatterns as doc_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('form', include('apps.monitor.urls'))
+    path('form/', include('apps.monitor.urls'))
 ]
 
 urlpatterns += doc_urls
