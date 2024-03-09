@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config_settings('SECRET_KEY')
 DEBUG = config_settings('DEBUG', cast=bool)
 ALLOWED_HOSTS = ['3.92.48.13', 'crynox.tech']
-SECURE_SSL_REDIRECT = config_settings('SECURE_SSL_REDIRECT')
+# SECURE_SSL_REDIRECT = config_settings('SECURE_SSL_REDIRECT')
 
 
 MY_APPS = [
