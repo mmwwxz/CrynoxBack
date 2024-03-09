@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - .:/app
+      - static_volume:/app/static
+      - media_volume:/app/media
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+    volumes:
+      - static_volume:/app/static
+      - media_volume:/app/media
+    depends_on:
+      - web
+
+  db:
+    image: python:3.8-slim
+    command: sh -c "apt-get update && apt-get install -y sqlite3 && sqlite3 /data/db.sqlite3"
+    volumes:
+      - sqlite_data:/data
+
+volumes:
+  .:
+  sqlite_data:
+  static_volume:
+  media_volume:

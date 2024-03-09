@@ -1,0 +1,10 @@
+Django==4.2.10
+django-phonenumber-field
+psycopg2-binary
+python-decouple
+djangorestframework
+drf-yasg
+phonenumbers
+celery
+requests
+telegram
