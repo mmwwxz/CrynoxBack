@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 def send_support_completion_email(lead, is_admin=False):
     subject = 'Поддержка продукта завершена'
-    from_email = 'from@example.com'
+    from_email = 'crynox.devtes@gmail.com'
 
     if not is_admin:
         message = (f'Уважаемый {lead.name},\n\n'
