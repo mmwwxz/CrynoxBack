@@ -26,7 +26,7 @@
 22. `sudo lsof -i :80`: Показывает процессы, слушающие порт 80.
 
 
-Ssl certbot:
+**Ssl certbot:**
 
 1. `sudo apt update`: Обновление списка пакетов.
 
@@ -40,7 +40,8 @@ Ssl certbot:
 
 6. `sudo nano /etc/nginx/sites-available/default`: Редактирование конфигурационного файла Nginx для настройки SSL-сертификата.
 
-/etc/nginx/sites-available/default:
+**/etc/nginx/sites-available/default:**
+```
 server { 
     listen                  443 ssl http2; 
     listen                  [::]:443 ssl http2; 
@@ -73,7 +74,7 @@ server {
     ssl_certificate         /etc/letsencrypt/live/domain.com/fullchain.pem; 
     ssl_certificate_key     /etc/letsencrypt/live/domain.com/privkey.pem; 
     ssl_trusted_certificate /etc/letsencrypt/live/domain.com/chain.pem; 
-    return                  301 https://domain.com$request_uri; 
+    return                  301 https://**domain.com**$request_uri; 
 } 
  
 # HTTP redirect 
@@ -86,3 +87,4 @@ server {
         return 301 https://domain.com$request_uri; 
     } 
 }
+```
