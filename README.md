@@ -74,7 +74,7 @@ server {
     ssl_certificate         /etc/letsencrypt/live/domain.com/fullchain.pem; 
     ssl_certificate_key     /etc/letsencrypt/live/domain.com/privkey.pem; 
     ssl_trusted_certificate /etc/letsencrypt/live/domain.com/chain.pem; 
-    return                  301 https://**domain.com**$request_uri; 
+    return                  301 https://domain.com$request_uri; 
 } 
  
 # HTTP redirect 
