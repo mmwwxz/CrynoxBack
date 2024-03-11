@@ -18,8 +18,8 @@ class UserForm(models.Model):
     name = models.CharField(verbose_name=_('ФИО'), max_length=255)
     phone = PhoneNumberField(verbose_name=_("Номер телефона"))
     email = models.EmailField(_('Электронная почта'), unique=True)
-    updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Обновлено"))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Создано"))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Обновлено"))
 
     status = models.CharField(
         verbose_name=_('Статус'),
@@ -54,8 +54,8 @@ class LeadStatus(models.Model):
 
 
 class LeadSupport(models.Model):
-    testing = models.DateTimeField(verbose_name=_("Тестирование"))
-    updating = models.DateTimeField(verbose_name=_("Обновление"))
+    testing = models.DateTimeField(verbose_name=_("Начало"))
+    updating = models.DateTimeField(verbose_name=_("Окончание"))
 
     lead = models.ForeignKey(UserForm, on_delete=models.CASCADE, verbose_name=_("Лид"))
 

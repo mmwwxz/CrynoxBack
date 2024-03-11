@@ -60,7 +60,7 @@ class LeadSupportInline(admin.TabularInline):
 
 @admin.register(UserForm)
 class UserFormAdmin(AdminChangeHistoryMixin, admin.ModelAdmin):
-    list_display = ('name', 'phone', 'email', 'status', 'updated_at', 'created_at')
+    list_display = ('name', 'phone', 'email', 'status')
     list_filter = ('status', 'updated_at', 'created_at')
     search_fields = ('name', 'phone', 'email')
     ordering = ('-created_at',)
@@ -77,7 +77,6 @@ class UserFormAdmin(AdminChangeHistoryMixin, admin.ModelAdmin):
         for obj in formset.deleted_objects:
             if isinstance(obj, (Comment, LeadStatus, LeadSupport)):
                 obj.delete()
-
 
 
 @admin.register(LeadStatus)
