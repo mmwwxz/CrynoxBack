@@ -90,12 +90,12 @@ class Portfolio(models.Model):
     language = models.CharField(max_length=255, verbose_name="Язык")
     project_name = models.CharField(max_length=255, verbose_name="Название проекта")
     framework = models.CharField(max_length=255, verbose_name="Фреймворк")
-    img = ImageField(upload_to='static/portfolio_img/', verbose_name="Картинка")
+    img = ImageField(upload_to='portfolio_img/', verbose_name="Картинка")
     url = models.URLField(max_length=300, verbose_name="Ссылка на проект")
+
+    def __str__(self):
+        return self.project_name
 
     class Meta:
         verbose_name = _("Портфорило")
         verbose_name_plural = _("Портфорило")
-
-    def __str__(self):
-        return self.project_name
