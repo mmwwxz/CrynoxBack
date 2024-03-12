@@ -2,13 +2,15 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from apps.monitor.views import PortfolioListView
 
 from .drf_swagger import urlpatterns as doc_urls
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('form/', include('apps.monitor.urls'))
+    path('form/', include('apps.monitor.urls')),
+    path('portfolio/', PortfolioListView.as_view(), name='portfolio-list'),
 ]
 
 urlpatterns += doc_urls

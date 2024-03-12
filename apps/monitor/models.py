@@ -5,6 +5,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
+from django.db.models.fields.files import ImageField
 
 
 class LeadStatusChoices(models.TextChoices):
@@ -83,3 +84,14 @@ class Comment(models.Model):
     class Meta:
         verbose_name = "Комментарий"
         verbose_name_plural = "Комментарии"
+
+
+class Portfolio(models.Model):
+    language = models.CharField(max_length=255)
+    project_name = models.CharField(max_length=255)
+    framework = models.CharField(max_length=255)
+    img = ImageField(upload_to='static/portfolio_img/')
+    url = models.URLField(max_length=300)
+
+    def __str__(self):
+        return self.project_name

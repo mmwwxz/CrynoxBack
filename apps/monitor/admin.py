@@ -1,7 +1,7 @@
 from django.contrib.contenttypes.admin import GenericTabularInline
 from django.db import models
 from django.forms import TextInput
-from .models import Comment, UserForm, LeadStatus, LeadSupport
+from .models import Comment, UserForm, LeadStatus, LeadSupport, Portfolio
 from django.urls import reverse
 from django.utils.html import format_html
 from django.contrib import admin
@@ -14,6 +14,7 @@ from django.contrib.auth.admin import GroupAdmin as BaseGroupAdmin
 
 admin.site.unregister(User)
 admin.site.unregister(Group)
+admin.site.register(Portfolio)
 
 
 class CommentInline(GenericTabularInline):

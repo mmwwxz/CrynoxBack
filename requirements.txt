@@ -8,3 +8,4 @@ phonenumbers
 requests
 gunicorn
 django-cors-headers
+Pillow
