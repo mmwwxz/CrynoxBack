@@ -14,7 +14,6 @@ from django.contrib.auth.admin import GroupAdmin as BaseGroupAdmin
 
 admin.site.unregister(User)
 admin.site.unregister(Group)
-admin.site.register(Portfolio)
 
 
 class CommentInline(GenericTabularInline):
@@ -119,6 +118,13 @@ class LeadSupportAdmin(AdminChangeHistoryMixin, admin.ModelAdmin):
                 obj.delete()
                 Comment.objects.filter(object_id=obj.pk, content_type__model=obj._meta.model_name.lower()).delete()
                 obj.delete()
+
+
+@admin.register(Portfolio)
+class PortfolioAdmin(AdminChangeHistoryMixin, admin.ModelAdmin):
+    list_display = ('project_name', 'language', 'framework')
+    list_filter = ('language', 'framework')
+    search_fields = ('project_name', 'language', 'framework')
 
 
 @admin.register(Comment)
