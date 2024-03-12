@@ -16,7 +16,7 @@ class LeadStatusChoices(models.TextChoices):
 
 class UserForm(models.Model):
     name = models.CharField(verbose_name=_('ФИО'), max_length=255)
-    phone = models.CharField(verbose_name=_("Номер телефона"))
+    phone = models.CharField(verbose_name=_("Номер телефона"), max_length=25)
     email = models.EmailField(_('Электронная почта'), unique=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Создано"))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Обновлено"))
