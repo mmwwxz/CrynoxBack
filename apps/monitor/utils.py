@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 def send_support_completion_email(lead, is_admin=False):
     subject = 'Поддержка продукта завершена'
     from_email = 'crynox.devtes@gmail.com'
-    five_days_later = timezone.now() + timedelta(days=5)
+    five_days_later = timezone.now() + timedelta(seconds=59)
 
     if not is_admin:
         message = (f'Уважаемый {lead.name},\n\n'
