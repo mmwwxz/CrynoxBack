@@ -32,8 +32,8 @@ class UserForm(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = _("Форма")
-        verbose_name_plural = _("Формы")
+        verbose_name = _("Заявка")
+        verbose_name_plural = _("Заявки")
 
 
 class LeadStatus(models.Model):
@@ -82,8 +82,8 @@ class Comment(models.Model):
         return f"Комментарий от {self.author.username} - {self.created_at.strftime('%Y-%m-%d %H:%M')}"
 
     class Meta:
-        verbose_name = "Комментарий"
-        verbose_name_plural = "Комментарии"
+        verbose_name = _("Комментарий")
+        verbose_name_plural = _("Комментарии")
 
 
 class Portfolio(models.Model):
@@ -97,5 +97,5 @@ class Portfolio(models.Model):
         return self.project_name
 
     class Meta:
-        verbose_name = _("Портфорило")
-        verbose_name_plural = _("Портфорило")
+        verbose_name = _("Наше Портфорило")
+        verbose_name_plural = _("Наши Портфорило")
