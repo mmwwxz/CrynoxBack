@@ -2,6 +2,7 @@ from datetime import timedelta
 from django.utils import timezone
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
+from apps.monitor.models import LeadSupport
 
 
 def send_support_completion_email(lead, is_admin=False):
@@ -15,7 +16,7 @@ def send_support_completion_email(lead, is_admin=False):
                    f'Если у вас возникнут вопросы или вы хотите продлить поддержку вашего продукта, пожалуйста, свяжитесь с нами.\n\n'
                    f'С уважением,\nВаша команда поддержки CRYNOX')
         to_email = [lead.email]
-        if lead.updating == five_days_later.date():
+        if LeadSupport.updating == five_days_later.date():
             send_mail(subject, message, from_email, to_email, fail_silently=False)
 
     elif not is_admin:
@@ -34,7 +35,7 @@ def send_support_completion_email(lead, is_admin=False):
                    f'Дата окончания поддержки: {lead.updating}'
                    'Пожалуйста, примите соответствующие меры')
         to_email = [user.email for user in User.objects.filter(is_staff=True)]
-        if lead.updating == five_days_later.date():
+        if LeadSupport.updating == five_days_later.date():
             send_mail(subject, message, from_email, to_email, fail_silently=False)
 
     else:
