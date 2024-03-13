@@ -32,7 +32,7 @@ def send_support_completion_email(lead, is_admin=False):
                    f'ФИО: {lead.name}\n'
                    f'Почта: {lead.email}\n'
                    f'Номер: {lead.phone}\n\n'
-                   f'Дата окончания поддержки: {lead.updating}'
+                   f'Дата окончания поддержки: {LeadSupport.updating}'
                    'Пожалуйста, примите соответствующие меры')
         to_email = [user.email for user in User.objects.filter(is_staff=True)]
         if LeadSupport.updating == five_days_later.date():
