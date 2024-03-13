@@ -11,8 +11,8 @@ SECRET_KEY = config_settings('SECRET_KEY')
 
 DEBUG = config_settings('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = ['3.92.48.13', 'crynox.tech']
-# ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['3.92.48.13', 'crynox.tech']
+ALLOWED_HOSTS = ['*']
 
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
