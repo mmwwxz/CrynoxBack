@@ -1,7 +1,7 @@
 from django.contrib.contenttypes.admin import GenericTabularInline
 from django.db import models
 from django.forms import TextInput
-from .models import Comment, UserForm, LeadStatus, LeadSupport, Portfolio
+from .models import Comment, UserForm, LeadStatus, LeadSupport, Portfolio, Language
 from django.urls import reverse
 from django.utils.html import format_html
 from django.contrib import admin
@@ -125,6 +125,13 @@ class PortfolioAdmin(AdminChangeHistoryMixin, admin.ModelAdmin):
     list_display = ('project_name', 'language', 'framework')
     list_filter = ('language', 'framework')
     search_fields = ('project_name', 'language', 'framework')
+
+
+@admin.register(Language)
+class LanguageAdmin(AdminChangeHistoryMixin, admin.ModelAdmin):
+    list_display = ('name',)
+    list_filter = ('name',)
+    search_fields = ('name',)
 
 
 @admin.register(Comment)
