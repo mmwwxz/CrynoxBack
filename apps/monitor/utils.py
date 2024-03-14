@@ -9,7 +9,6 @@ def send_support_completion_email(lead, is_admin=False):
     subject = 'Поддержка продукта завершена'
     from_email = 'crynox.devtes@gmail.com'
     phone_number = "+996706661133"
-    # lead_support_instance = LeadSupport.objects.first()
     link_crynox = "https://crynox.tech/"
     name_or_business = lead.name if lead.name else LeadSupport.lead_business
 
@@ -19,7 +18,7 @@ def send_support_completion_email(lead, is_admin=False):
                     f'Если у вас есть вопросы насчет тех.поддержки или вы хотите ее продлить, пожалуйста свяжитесь с нами! Ответьте на данное сообщение, задайте вопрос или <a href="tel:{phone_number}">позвоните по номеру {phone_number}</a>.\n\n'
                     f'С уважением,\nВаша команда поддержки <a href="{link_crynox}">CRYNOX</a>')
         to_email = [lead.email]
-    else:
+    elif is_admin:
         message = (f'Уважаемый администратор,\n'
                    f'Поддержка продукта пользователя {lead.name} завершена.\n\n'
                    f'ФИО: {lead.name}\n'

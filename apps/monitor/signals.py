@@ -10,9 +10,7 @@ from datetime import timedelta
 def send_support_completion_notification(sender, instance, created, **kwargs):
     if created:
         lead = instance.lead
-        now = timezone.now()
-
-        if instance.updating <= now + timedelta(minutes=5) and instance.updating > now:
+        today = timezone.now().date()
+        if instance.testing.date() <= today and instance.updating.date() <= today:
             send_support_completion_email(lead)
-        if instance.updating < now:
             send_support_completion_email(lead, is_admin=True)
