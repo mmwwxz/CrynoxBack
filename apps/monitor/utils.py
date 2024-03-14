@@ -8,13 +8,14 @@ from apps.monitor.models import LeadSupport
 def send_support_completion_email(lead, is_admin=False):
     subject = 'Поддержка продукта завершена'
     from_email = 'crynox.devtes@gmail.com'
+    info = LeadSupport.objects.all()
     phone_number = "+996706661133"
     link_crynox = "https://crynox.tech/"
-    name_or_business = lead.name if lead.name else LeadSupport.lead_business
+    name_or_business = lead.name if lead.name else info.lead_business
 
     if not is_admin:
         message = (f'Здравствуйте уважаемый {name_or_business},\n\n'
-                    f'Хотим вас оповестить об окончании тех.поддержки вашего продукта, а именно <a href="{LeadSupport.domain_site}">{LeadSupport.domain_site}</a>\n\n'
+                    f'Хотим вас оповестить об окончании тех.поддержки вашего продукта, а именно <a href="{info.domain_site}">{info.domain_site}</a>\n\n'
                     f'Если у вас есть вопросы насчет тех.поддержки или вы хотите ее продлить, пожалуйста свяжитесь с нами! Ответьте на данное сообщение, задайте вопрос или <a href="tel:{phone_number}">позвоните по номеру {phone_number}</a>.\n\n'
                     f'С уважением,\nВаша команда поддержки <a href="{link_crynox}">CRYNOX</a>')
         to_email = [lead.email]
@@ -22,8 +23,8 @@ def send_support_completion_email(lead, is_admin=False):
         message = (f'Уважаемый администратор,\n'
                    f'Поддержка продукта пользователя {lead.name} завершена.\n\n'
                    f'ФИО: {lead.name}\n'
-                   f'Сайт: {LeadSupport.domain_site}\n'
-                   f'Название бизнеса: {LeadSupport.lead_business}\n'
+                   f'Сайт: {info.domain_site}\n'
+                   f'Название бизнеса: {info.lead_business}\n'
                    f'Почта: {lead.email}\n'
                    f'Номер: {lead.phone}\n\n'
                    'Пожалуйста, примите соответствующие меры')
