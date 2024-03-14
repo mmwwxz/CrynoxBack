@@ -9,6 +9,9 @@ RUN pip install --upgrade pip && \
     pip install -r requirements.txt
 
 
+COPY nginx/nginx.conf /etc/nginx/conf.d/
+
+
 COPY . /app/
 
 RUN python manage.py makemigrations && \

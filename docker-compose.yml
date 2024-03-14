@@ -13,6 +13,16 @@ services:
     depends_on:
       - db
 
+  nginx:
+    build: ./nginx
+    ports:
+      - "81:81"
+    volumes:
+      - static_volume:/app/static
+      - media_volume:/app/media
+    depends_on:
+      - web
+
   db:
     image: python:3.8-slim
     command: sh -c "apt-get update && apt-get install -y sqlite3 && sqlite3 /data/db.sqlite3"
