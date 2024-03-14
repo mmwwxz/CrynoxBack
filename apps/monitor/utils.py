@@ -36,24 +36,24 @@ def send_support_completion_email(lead, is_admin=False):
 
     if not is_admin:
         message = (
-            f'Здравствуйте уважаемый {name_or_business},\n\n'
+            f'Здравствуйте уважаемый {name_or_business},<br><br>'
             f'Хотим вас оповестить об окончании тех.поддержки вашего продукта, '
-            f'а именно {site_link}\n\n'
+            f'а именно {site_link}<br><br>'
             f'Если у вас есть вопросы насчет тех.поддержки или вы хотите ее продлить, '
             f'пожалуйста свяжитесь с нами! Ответьте на данное сообщение, задайте вопрос или '
-            f'звоните по номеру {phone_number}.\n\n'
-            f'С уважением,\nВаша команда поддержки {link_crynox}'
+            f'звоните по номеру {phone_number}.<br><br>'
+            f'С уважением,<br>Ваша команда поддержки {link_crynox}'
         )
         to_email = [lead.email]
     elif is_admin:
         message = (
-            f'Уважаемый администратор,\n'
-            f'Поддержка продукта пользователя {lead.name} завершена.\n\n'
-            f'ФИО: {lead.name}\n'
+            f'Уважаемый администратор,<br>'
+            f'Поддержка продукта пользователя {lead.name} завершена.<br><br>'
+            f'ФИО: {lead.name}<br>'
             f'Сайт: {site_link}\n'
-            f'Название бизнеса: {info.lead_business}\n'
-            f'Почта: {lead.email}\n'
-            f'Номер: {lead.phone}\n\n'
+            f'Название бизнеса: {info.lead_business}<br>'
+            f'Почта: {lead.email}<br>'
+            f'Номер: {lead.phone}<br><br>'
             f'Пожалуйста, примите соответствующие меры'
         )
         to_email = [user.email for user in User.objects.filter(is_staff=True)]
