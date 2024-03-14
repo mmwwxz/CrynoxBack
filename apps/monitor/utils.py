@@ -19,7 +19,7 @@ def send_support_completion_email(lead, is_admin=False):
 
     number = '+996706661133'
     phone_number = f'<a href="tel:{number}">позвоните по номеру {number}</a>'
-    link_crynox = "https://crynox.tech/"
+    link_crynox = "<a href='https://crynox.tech/'>CRYNOX</a>"
 
     if domain_site:
         site_link = f'<a href="{domain_site}">{domain_site}</a>'
@@ -37,7 +37,7 @@ def send_support_completion_email(lead, is_admin=False):
         message = (f'Здравствуйте уважаемый {name_or_business},\n\n'
                     f'Хотим вас оповестить об окончании тех.поддержки вашего продукта, а именно {site_link}\n\n'
                     f'Если у вас есть вопросы насчет тех.поддержки или вы хотите ее продлить, пожалуйста свяжитесь с нами! Ответьте на данное сообщение, задайте вопрос или звоните по номеру {phone_number}.\n\n'
-                    f'С уважением,\nВаша команда поддержки <a href="{link_crynox}">CRYNOX</a>')
+                    f'С уважением,\nВаша команда поддержки {link_crynox}')
         to_email = [lead.email]
     elif is_admin:
         message = (f'Уважаемый администратор,\n'
@@ -50,7 +50,7 @@ def send_support_completion_email(lead, is_admin=False):
                    'Пожалуйста, примите соответствующие меры')
         to_email = [user.email for user in User.objects.filter(is_staff=True)]
 
-    send_mail(subject, message, from_email, to_email, fail_silently=False)
+    send_mail(subject, message, from_email, to_email, fail_silently=False, html_message=message)
 
 # def send_support_completion_email(lead, is_admin=False):
 #     subject = 'Поддержка продукта завершена'
