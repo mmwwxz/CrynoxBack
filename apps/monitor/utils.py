@@ -9,21 +9,33 @@ def send_support_completion_email(lead, is_admin=False):
     subject = 'Поддержка продукта завершена'
     from_email = 'crynox.devtes@gmail.com'
     info = LeadSupport.objects.first()
-    phone_number = "+996706661133"
+    number = '+996706661133'
+    phone_number = f'<a href="tel:{number}">позвоните по номеру {number}</a>'
     link_crynox = "https://crynox.tech/"
-    name_or_business = lead.name if lead.name else info.lead_business
+
+    if info and info.domain_site:
+        site_link = f'<a href="{info.domain_site}">{info.domain_site}</a>'
+    else:
+        site_link = "неизвестен"
+
+    if lead.name:
+        name_or_business = lead.name
+    elif info:
+        name_or_business = info.lead_business
+    else:
+        name_or_business = "Уважаемый пользователь"
 
     if not is_admin:
         message = (f'Здравствуйте уважаемый {name_or_business},\n\n'
-                    f'Хотим вас оповестить об окончании тех.поддержки вашего продукта, а именно <a href="{info.domain_site}">{info.domain_site}</a>\n\n'
-                    f'Если у вас есть вопросы насчет тех.поддержки или вы хотите ее продлить, пожалуйста свяжитесь с нами! Ответьте на данное сообщение, задайте вопрос или <a href="tel:{phone_number}">позвоните по номеру {phone_number}</a>.\n\n'
+                    f'Хотим вас оповестить об окончании тех.поддержки вашего продукта, а именно {site_link}\n\n'
+                    f'Если у вас есть вопросы насчет тех.поддержки или вы хотите ее продлить, пожалуйста свяжитесь с нами! Ответьте на данное сообщение, задайте вопрос или звоните по номеру {phone_number}.\n\n'
                     f'С уважением,\nВаша команда поддержки <a href="{link_crynox}">CRYNOX</a>')
         to_email = [lead.email]
     elif is_admin:
         message = (f'Уважаемый администратор,\n'
                    f'Поддержка продукта пользователя {lead.name} завершена.\n\n'
                    f'ФИО: {lead.name}\n'
-                   f'Сайт: {info.domain_site}\n'
+                   f'Сайт: {site_link}\n'
                    f'Название бизнеса: {info.lead_business}\n'
                    f'Почта: {lead.email}\n'
                    f'Номер: {lead.phone}\n\n'
