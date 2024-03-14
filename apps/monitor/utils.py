@@ -8,12 +8,12 @@ from apps.monitor.models import LeadSupport
 def send_support_completion_email(lead, is_admin=False):
     subject = 'Поддержка продукта завершена'
     from_email = 'crynox.devtes@gmail.com'
-    five_days_later = timezone.now() + timedelta(minutes=5)
+    five_minutes_later = timezone.now() + timedelta(minutes=5)
 
     lead_support = LeadSupport.objects.filter(lead=lead).latest('updating')
 
     if not is_admin:
-        if lead_support.updating == five_days_later:
+        if lead_support.updating == five_minutes_later:
             message = (
                 f'Уважаемый {lead.name},\n\n'
                 f'Поддержка вашего продукта закончится через 5 дней.\n'
@@ -34,7 +34,7 @@ def send_support_completion_email(lead, is_admin=False):
             send_mail(subject, message, from_email, to_email, fail_silently=False)
 
     elif is_admin:
-        if lead_support.updating == five_days_later:
+        if lead_support.updating == five_minutes_later:
             message = (
                 f'Уважаемый администратор,\n'
                 f'Поддержка продукта пользователя {lead.name} закончится через 5 дней.\n\n'
