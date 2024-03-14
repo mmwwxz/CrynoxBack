@@ -8,7 +8,7 @@ from apps.monitor.models import LeadSupport
 def send_support_completion_email(lead, is_admin=False):
     subject = 'Поддержка продукта завершена'
     from_email = 'crynox.devtes@gmail.com'
-    five_days_later = timezone.now() + timedelta(minutes=2)
+    five_days_later = timezone.now() + timedelta(minutes=3)
 
     lead_support = LeadSupport.objects.filter(lead=lead).latest('updating')
 
