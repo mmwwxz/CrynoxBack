@@ -8,7 +8,7 @@ from apps.monitor.models import LeadSupport
 def send_support_completion_email(lead, is_admin=False):
     subject = 'Поддержка продукта завершена'
     from_email = 'crynox.devtes@gmail.com'
-    info = LeadSupport.objects.all()
+    info = LeadSupport.objects.first()
     phone_number = "+996706661133"
     link_crynox = "https://crynox.tech/"
     name_or_business = lead.name if lead.name else info.lead_business
