@@ -55,6 +55,8 @@ class LeadStatus(models.Model):
 
 
 class LeadSupport(models.Model):
+    lead_business = models.CharField(max_length=255, blank=True, null=True, verbose_name=_("Название компании"))
+    domain_site = models.CharField(max_length=255, blank=True, null=True, verbose_name=_("Домен сайта"))
     testing = models.DateTimeField(verbose_name=_("Начало"))
     updating = models.DateTimeField(verbose_name=_("Окончание"))
 
