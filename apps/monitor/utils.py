@@ -15,8 +15,10 @@ def send_support_completion_email(lead, is_admin=False):
         domain_site = None
         lead_business = None
 
+    lead_number = lead.phone
+    lead_number_link = f'<a href="tel:{lead_number}">позвоните по номеру {lead_number}</a>'
     number = '+996706661133'
-    phone_number = f'<a href="tel:{number}">позвоните по номеру {number}</a>'
+    phone_number = f'<a href="tel:{number}">{number}</a>'
     link_crynox = "<a href='https://crynox.tech/'>CRYNOX</a>"
 
     message = ""
@@ -50,10 +52,10 @@ def send_support_completion_email(lead, is_admin=False):
             f'Уважаемый администратор,<br>'
             f'Поддержка продукта пользователя {lead.name} завершена.<br><br>'
             f'ФИО: {lead.name}<br>'
-            f'Сайт: {site_link}\n'
+            f'Сайт: {site_link}<br>'
             f'Название бизнеса: {info.lead_business}<br>'
             f'Почта: {lead.email}<br>'
-            f'Номер: {lead.phone}<br><br>'
+            f'Номер: {lead_number_link}<br><br>'
             f'Пожалуйста, примите соответствующие меры'
         )
         to_email = [user.email for user in User.objects.filter(is_staff=True)]
