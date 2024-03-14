@@ -13,7 +13,7 @@ def send_support_completion_email(lead, is_admin=False):
     lead_support = LeadSupport.objects.filter(lead=lead).latest('updating')
 
     if not is_admin:
-        if lead_support.updating == five_days_later.datetime.datetime():
+        if lead_support.updating == five_days_later:
             message = (
                 f'Уважаемый {lead.name},\n\n'
                 f'Поддержка вашего продукта закончится через 5 дней.\n'
@@ -23,7 +23,7 @@ def send_support_completion_email(lead, is_admin=False):
             )
             to_email = [lead.email]
             send_mail(subject, message, from_email, to_email, fail_silently=False)
-        elif lead_support.updating < timezone.now().datetime.datetime():
+        elif lead_support.updating < timezone.now():
             message = (
                 f'Уважаемый {lead.name},\n\n'
                 'Поддержка вашего продукта завершена.\n'
@@ -34,7 +34,7 @@ def send_support_completion_email(lead, is_admin=False):
             send_mail(subject, message, from_email, to_email, fail_silently=False)
 
     elif is_admin:
-        if lead_support.updating == five_days_later.datetime.datetime():
+        if lead_support.updating == five_days_later:
             message = (
                 f'Уважаемый администратор,\n'
                 f'Поддержка продукта пользователя {lead.name} закончится через 5 дней.\n\n'
@@ -47,7 +47,7 @@ def send_support_completion_email(lead, is_admin=False):
             to_email = [user.email for user in User.objects.filter(is_staff=True)]
             send_mail(subject, message, from_email, to_email, fail_silently=False)
 
-        elif lead_support.updating < timezone.now().datetime.datetime():
+        elif lead_support.updating < timezone.now():
             message = (
                 f'Уважаемый администратор,\n'
                 f'Поддержка продукта пользователя {lead.name} завершена.\n\n'
