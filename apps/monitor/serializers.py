@@ -1,6 +1,5 @@
-from .models import Language
 from rest_framework import serializers
-from .models import UserForm, Portfolio
+from .models import UserForm, Portfolio, Language, LeadSupport
 
 
 class UserFormSerializer(serializers.ModelSerializer):
@@ -19,3 +18,9 @@ class LanguageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Language
         fields = 'name',
+
+
+class LeadSupportSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Language
+        fields = '__all__',

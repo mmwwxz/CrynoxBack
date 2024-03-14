@@ -61,7 +61,7 @@ class LeadSupport(models.Model):
     lead = models.ForeignKey(UserForm, on_delete=models.CASCADE, verbose_name=_("Лид"))
 
     def __str__(self):
-        return f"{self.lead.name} - Поддержка"
+        return f"{self.testing} - {self.updating}"
 
     class Meta:
         verbose_name = _("Поддержка продукта")
