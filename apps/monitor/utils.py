@@ -16,7 +16,7 @@ def send_support_completion_email(lead, is_admin=False):
         lead_business = None
 
     lead_number = lead.phone
-    lead_number_link = f'<a href="tel:{lead_number}">позвоните по номеру {lead_number}</a>'
+    lead_number_link = f'<a href="tel:{lead_number}">{lead_number}</a>'
     number = '+996706661133'
     phone_number = f'<a href="tel:{number}">{number}</a>'
     link_crynox = "<a href='https://crynox.tech/'>CRYNOX</a>"
@@ -41,8 +41,8 @@ def send_support_completion_email(lead, is_admin=False):
             f'Здравствуйте уважаемый {name_or_business},<br><br>'
             f'Хотим вас оповестить об окончании тех.поддержки вашего продукта, '
             f'а именно {site_link}<br><br>'
-            f'Если у вас есть вопросы насчет тех.поддержки или вы хотите ее продлить, '
-            f'пожалуйста свяжитесь с нами! Ответьте на данное сообщение, задайте вопрос или '
+            f'Если у вас есть вопросы насчет тех.поддержки или вы хотите ее продлить,'
+            f'пожалуйста свяжитесь с нами!<br>Ответьте на данное сообщение, задайте вопрос или '
             f'звоните по номеру {phone_number}.<br><br>'
             f'С уважением,<br>Ваша команда поддержки {link_crynox}'
         )
