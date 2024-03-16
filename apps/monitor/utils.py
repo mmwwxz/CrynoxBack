@@ -25,7 +25,7 @@ def send_support_completion_email(lead, is_admin=False):
     number = '+996706661133'
     phone_number = f'<a href="tel:{number}">{number}</a>'
     link_crynox = "<a href='https://crynox.tech/'>CRYNOX</a>"
-    link_lead = f'<a href="https://crynox.tech/{lead_support_link}/">Ссылка на пользователя</a>'
+    link_lead = f'<a href="https://crynox.tech/{lead_support_link}">Ссылка на пользователя</a>'
 
     message = ""
     to_email = []
