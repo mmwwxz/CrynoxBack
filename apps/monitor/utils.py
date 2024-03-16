@@ -1,8 +1,6 @@
 from django.core.mail import send_mail
-from django.contrib.auth.models import User
 from django.urls import reverse
-
-from apps.monitor.models import LeadSupport
+from .models import LeadSupport, User
 
 
 def get_phone_link(phone_number):
@@ -25,6 +23,9 @@ def send_support_completion_email(lead, is_admin=False):
     subject = 'Поддержка продукта завершена'
     from_email = 'crynox.devtes@gmail.com'
     info = LeadSupport.objects.first()
+
+    message = ''
+    to_email = ''
 
     if info:
         domain_site = info.domain_site
