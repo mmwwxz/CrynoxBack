@@ -1,12 +1,17 @@
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
-from apps.monitor.models import LeadSupport
+from .models import LeadSupport, UserForm
+from django.urls import reverse
 
 
 def send_support_completion_email(lead, is_admin=False):
     subject = 'Поддержка продукта завершена'
     from_email = 'crynox.devtes@gmail.com'
     info = LeadSupport.objects.first()
+    lead = UserForm.objects.get(name=lead.name)
+    lead_support = LeadSupport.objects.filter(lead=lead).latest('updating')
+    lead_support_link = reverse('admin:%s_%s_change' % (lead_support._meta.app_label, lead_support._meta.model_name),
+                                args=[lead_support.id])
 
     if info:
         domain_site = info.domain_site
@@ -20,6 +25,7 @@ def send_support_completion_email(lead, is_admin=False):
     number = '+996706661133'
     phone_number = f'<a href="tel:{number}">{number}</a>'
     link_crynox = "<a href='https://crynox.tech/'>CRYNOX</a>"
+    link_lead = f'<a href="https://crynox.tech/admin/monitor/userform/{lead_support_link}/change/">Ссылка на пользователя</a>'
 
     message = ""
     to_email = []
@@ -41,7 +47,7 @@ def send_support_completion_email(lead, is_admin=False):
             f'Здравствуйте уважаемый {name_or_business},<br><br>'
             f'Хотим вас оповестить об окончании тех.поддержки вашего продукта, '
             f'а именно {site_link}<br><br>'
-            f'Если у вас есть вопросы насчет тех.поддержки или вы хотите ее продлить,'
+            f'Если у вас есть вопросы насчет тех.поддержки или вы хотите ее продлить, '
             f'пожалуйста свяжитесь с нами!<br>Ответьте на данное сообщение, задайте вопрос или '
             f'звоните по номеру {phone_number}.<br><br>'
             f'С уважением,<br>Ваша команда поддержки {link_crynox}'
@@ -57,6 +63,7 @@ def send_support_completion_email(lead, is_admin=False):
             f'Почта: {lead.email}<br>'
             f'Номер: {lead_number_link}<br><br>'
             f'Пожалуйста, примите соответствующие меры'
+            f'{link_lead}'
         )
         to_email = [user.email for user in User.objects.filter(is_staff=True)]
     send_mail(subject, message, from_email, to_email, fail_silently=False, html_message=message)
