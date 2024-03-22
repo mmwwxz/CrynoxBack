@@ -35,7 +35,7 @@ def send_support_completion_email(lead, is_admin=False):
         lead_business = None
 
     if not is_admin:
-        name_or_business = lead.name or lead_business or "Уважаемый пользователь"
+        name_or_business = lead.name or lead_business or " пользователь"
         message = (
             f'Здравствуйте уважаемый {name_or_business},<br><br>'
             f'Хотим вас оповестить об окончании тех.поддержки вашего продукта, '
